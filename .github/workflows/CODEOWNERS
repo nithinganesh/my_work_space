@@ -1,0 +1,13 @@
+# Description:
+# - This file contain the reviewers of files/folders in this repository that is automatically used when a new pull request is opened.
+
+# Notes:
+# - Order is important; the last matching pattern takes the most precedence and is the one choosen as reviewers for any pull requests.
+
+# Rules:
+# - By repository:
+* @nithinganesh
+
+# - By folders:
+#/folder [@ghusername|email] [@ghusername|email]
+#CI CD Github
