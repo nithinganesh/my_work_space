@@ -1,6 +1,8 @@
 name: Test action
 on:
   workflow_dispatch:
+  schedule: ## Schedule the job to run at 12.am daily.
+    - cron: '48 12 * * *'
 
 jobs:
   test_action:
