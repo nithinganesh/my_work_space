@@ -1,13 +1,29 @@
-name: Test action
+name: Create Pull Request
+
 on:
   workflow_dispatch:
-  schedule: ## Schedule the job to run at 12.am daily.
-    - cron: '48 12 * * *'
+    inputs:
+      source_branch:
+        description: 'Source branch name'
+        required: true
+      target_branch:
+        description: 'Target branch name'
+        required: true
 
 jobs:
-  test_action:
+  create_pull_request:
     runs-on: ubuntu-latest
-    name: "Fun"
     steps:
-    - name: "Echo"
-      run: echo "Hello There"
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.source_branch }}
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: new-branch
+          base: ${{ github.event.inputs.target_branch }}
+          title: 'Automated Pull Request'
+          body: 'This pull request was automatically created.'
